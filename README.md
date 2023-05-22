@@ -5,13 +5,13 @@
 ## Compressing
 
 ```bash
-gpxcomopress <name> <new_name>  <epsilon_value>
+gpxcomopressor -input <name> -output <new_name>  -epsilon <epsilon_value>
 ```
 
 Where:
-**name** - gpx name
-**new_name** - compressed gpx (output)
-**epsilon_value** - compression coefficient (50m accuracy - approximately 0.0000045 )
+**input** - gpx name
+**output** - compressed gpx (output)
+**epsilon** - compression accuracy (50m accuracy - approximately 0.0000045 )
 
 ## Batch compressing
 

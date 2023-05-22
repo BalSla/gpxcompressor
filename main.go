@@ -2,14 +2,18 @@ package main
 
 import (
 	"bytes"
+	"flag"
 	"fmt"
 	"io"
 	"os"
-	"strconv"
 
 	"github.com/golang/geo/s2"
 	"github.com/tkrajina/gpxgo/gpx"
 )
+
+var input_file = flag.String("input", "", "Input GPX file")
+var output_file = flag.String("output", "", "Output GPX file")
+var epsilon = flag.Float64("epsilon", 0.0000045, "Epsilon value (about 50 m by default)")
 
 func pointToSegmentDistance(point, start, end s2.Point) float64 {
 	projected := s2.Project(point, start, end)
@@ -112,24 +116,20 @@ func simplifyGPXFile(inputFile, outputFile string, epsilon float64) error {
 }
 
 func main() {
-	if len(os.Args) != 4 {
-		fmt.Println("Usage: gpx_simplifier input.gpx output.gpx epsilon")
+
+	flag.Parse()
+
+	if *input_file == "" || *output_file == "" {
+		flag.Usage()
 		os.Exit(1)
 	}
 
-	inputFile := os.Args[1]
-	outputFile := os.Args[2]
-	epsilon, err := strconv.ParseFloat(os.Args[3], 64)
-	if err != nil {
-		fmt.Println("Error: Invalid epsilon value")
-		os.Exit(1)
-	}
-
-	err = simplifyGPXFile(inputFile, outputFile, epsilon)
+	err := simplifyGPXFile(*input_file, *output_file, *epsilon)
 	if err != nil {
 		fmt.Println("Error simplifying GPX file:", err)
 		os.Exit(1)
 	}
 
-	fmt.Printf("Simplified GPX file saved to %s\n", outputFile)
+	fmt.Printf("Simplified GPX file saved to %s\n", *output_file)
+	os.Exit(0)
 }
