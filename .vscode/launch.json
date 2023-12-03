@@ -7,7 +7,7 @@
             "request": "launch",
             "mode": "debug",
             "program": "${fileDirname}",
-            "args": ["test.gpx","test_out.gpx",  "0.0000045"],
+            "args": ["test.gpx", "test_out.gpx",  "0.45"],
             "env": {},
             "showLog": true
         }

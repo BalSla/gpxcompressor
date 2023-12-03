@@ -2,6 +2,13 @@
 
 > The purpose of this utility is to reduce the load on rendering components, such as [Leaflet](https://leafletjs.com/), when they render multiple files simultaneously.
 
+## To do
+- [ ] Change date in GPX to today (by default) using data 
+- [ ] Build output file name and path basing on date provided in parametes plus `root folder`
+- [ ] Add `root folder` to config file
+- [ ] Read `root folder` from config file
+- [ ] Add to this file description how to register executable file in MacOS
+
 ## Compressing
 
 ```bash
